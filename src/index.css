@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.footerBorder {
+    background: 
+        linear-gradient(#000000, #000000) 50% 50%/calc(100% - 2px) calc(100% - 2px) no-repeat,
+        linear-gradient(89deg, transparent 0%, #ffffff 50%, transparent 100%);
+    border-radius: 0px;
+    padding: 20px;
+    box-sizing: content-box;
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+  }
+  
+  /* Removes default focus */
+  input[type="range"]:focus {
+    outline: none;
+  }
+  
+  input[type="range"]::-webkit-slider-runnable-track {
+    background-color: white;
+    height: 1px;
+  }
+  
+  /* slider thumb */
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    margin-top: -7px; /* Centers thumb on the track */
+  
+    border: 1px solid;
+    border-radius: 100%;
+  
+    /*custom styles*/
+    background-color: black;
+    height: 1rem;
+    width: 1rem;
+  }
