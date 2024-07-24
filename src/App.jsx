@@ -4,13 +4,14 @@ import { useId } from "react"
 function App() {
   const [params, setParams] = useState({
     horizontal: 0,
-    vertical: 0,
-    blur: 0,
-    spread: 0,
-    shadowColor: "shadow-fuchsia-500", 
+    vertical: 25,
+    blur: 50,
+    spread: -12,
+    shadowColor: "#d946ef", 
     shadowOpacity: 1, 
     squareColor: "rgb(34 211 238)", 
-    bgColor: "bg-white"
+    bgColor: "",
+    shadowInset: false
   })
 
   const inputHorizontalLength = useId()
@@ -143,7 +144,8 @@ function App() {
   
   const handleShadowColorOnChange = (e) => {
     const newParams = structuredClone(params)
-    newParams.shadowColor = `shadow-[${e.target.value}]`
+    console.log(e.target.value)
+    newParams.shadowColor = e.target.value
     setParams(newParams)
   }
 
@@ -156,7 +158,13 @@ function App() {
 
   const handleBgColorOnChange = (e) => {
     const newParams = structuredClone(params)
-    newParams.bgColor = `bg-[${e.target.value}`
+    newParams.bgColor = e.target.value
+    setParams(newParams)
+  }
+
+  const handleCheckboxOnChange = (e) => {
+    const newParams = structuredClone(params)
+    newParams.shadowInset = e.target.checked
     setParams(newParams)
   }
 
@@ -165,23 +173,35 @@ function App() {
       <div className="absolute w-[0px] h-[0px] shadow-cyan-400 shadow-[0px_0px_100px_50px_#f7fafc] -z-50"></div>
       <div className="absolute w-[0px] h-[0px] right-72 shadow-fuchsia-400 shadow-[0px_0px_100px_25px_#f7fafc] -z-50"></div>
       <header className="text-white font-sans text-2xl font-bold text-center p-4 shadow-md shadow-[#222] tracking-wide">Containers Shadow Generator</header>
-      <main className="flex flex-col text-white pb-16">
-        <div className="bg-white pt-16 pb-16">
+      <main className="flex flex-col text-white pt-16 pb-16 gap-16">
+        <div 
+          style={{backgroundColor:`${params.bgColor}`}}
+          className="">
           <div
-            style={{backgroundColor: params.squareColor}} 
-            className={`h-[250px] w-[250px] m-auto rounded-lg shadow-2xl shadow-fuchsia-500`}> 
+            style={
+              {
+                backgroundColor: params.squareColor, 
+                boxShadow:`
+                ${params.horizontal}px 
+                ${params.vertical}px 
+                ${params.blur}px 
+                ${params.spread}px 
+                ${params.shadowColor} 
+                ${params.shadowInset ? "inset" : ""}
+                ` }}
+            className={`h-[250px] w-[250px] m-auto rounded-lg shadow-2xl`}> 
             </div>
         </div>
         <div className="flex flex-col w-2/3 m-auto pt-4 gap-2 text-lg">
-          <label htmlFor={inputHorizontalLength}>Horizontal shadow length - 0px </label>
+          <label htmlFor={inputHorizontalLength}>Horizontal shadow length: {params.horizontal}px </label>
           <input id={inputHorizontalLength} onChange={(e)=>{handleHorizontalOnChange(e)}} min="-200" max="200" type="range" className="mb-4"/>
-          <label htmlFor={inputVerticalLength}>Horizontal shadow length - 0px</label>
+          <label htmlFor={inputVerticalLength}>Vertical shadow length: {params.vertical}px</label>
           <input id={inputVerticalLength} onChange={(e)=>{handleVerticalOnChange(e)}} min="-200" max="200" type="range" className="mb-4"/>
-          <label htmlFor={inputBlurRadius}>Blur radius - 0px</label>
+          <label htmlFor={inputBlurRadius}>Blur radius: {params.blur}px</label>
           <input id={inputBlurRadius} onChange={(e)=>{handleBlurOnChange(e)}} min="0" max="300" type="range" className="mb-4"/>
-          <label htmlFor={inputSpreadRadius}>Spread radius - 0px</label>
+          <label htmlFor={inputSpreadRadius}>Spread radius: {params.spread}px</label>
           <input id={inputSpreadRadius} onChange={(e)=>{handleSpreadOnChange(e)}} min="-200" max="200" type="range" className="mb-4"/>
-          <label htmlFor={inputShadowOpacity}>Shadow opactiy - 0</label>
+          <label htmlFor={inputShadowOpacity}>Shadow opactiy: 0</label>
           <input id={inputShadowOpacity} onChange={(e)=>{handleOpacityOnChange(e)}} min="0" max="1" step="0.01" type="range" className="mb-4"/>
           <div className="grid grid-cols-2 text-base place-items-center gap-y-4">
             <div className="flex flex-col items-center gap-1">
@@ -198,9 +218,14 @@ function App() {
             </div>
             <div className="flex flex-col items-center gap-1">
               <label htmlFor={inputBackgroundColor}>Shadow inset</label>
-              <input id={inputBackgroundColor} className="w-[25px] h-[25px]" type="checkbox"/>
+              <input id={inputBackgroundColor} onChange={(e)=>{handleCheckboxOnChange(e)}} className="w-[25px] h-[25px] appearance-none border rounded-md" style={{backgroundColor:`${params.shadowInset ? "red" : ""}`}} type="checkbox"/>
             </div>
           </div>
+        </div>
+        <div className="bg-[#222] w-2/3 m-auto text-sm p-4 rounded-md"> 
+                <p>-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);</p>
+                <p>-moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);</p>
+                <p>box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);</p>
         </div>
       </main>
       <footer className="text-white flex justify-between items-center footerBorder">
@@ -211,8 +236,8 @@ function App() {
           <span>{gmailSVG}</span>
         </div>
       </footer>
-      <div className="absolute w-[0px] h-[0px] -bottom-4 shadow-cyan-400 shadow-[0px_0px_100px_20px_#f7fafc] -z-50"></div>
-      <div className="absolute w-[0px] h-[0px] bottom-10 right-0 shadow-fuchsia-400 shadow-[0px_0px_100px_25px_#f7fafc] -z-50"></div>
+      <div className="absolute w-[0px] h-[0px] -bottom-32 shadow-cyan-400 shadow-[0px_0px_100px_20px_#f7fafc] -z-50"></div>
+      <div className="absolute w-[0px] h-[0px] -bottom-20 right-0 shadow-fuchsia-400 shadow-[0px_0px_100px_25px_#f7fafc] -z-50"></div>
     </>
   )
 }
