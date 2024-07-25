@@ -19,7 +19,6 @@ function App() {
   const inputBlurRadius = useId()
   const inputSpreadRadius = useId()
   const inputShadowColor = useId()
-  const inputShadowOpacity = useId()
   const inputSquareColor = useId()
   const inputBackgroundColor = useId()
 
@@ -135,12 +134,6 @@ function App() {
     newParams.spread = e.target.value
     setParams(newParams)
   }
-
-  const handleOpacityOnChange = (e) => {
-    const newParams = structuredClone(params)
-    newParams.shadowOpacity = e.target.value
-    setParams(newParams)
-  }
   
   const handleShadowColorOnChange = (e) => {
     const newParams = structuredClone(params)
@@ -173,10 +166,10 @@ function App() {
       <div className="absolute w-[0px] h-[0px] shadow-cyan-400 shadow-[0px_0px_100px_50px_#f7fafc] -z-50"></div>
       <div className="absolute w-[0px] h-[0px] right-72 shadow-fuchsia-400 shadow-[0px_0px_100px_25px_#f7fafc] -z-50"></div>
       <header className="text-white font-sans text-2xl font-bold text-center p-4 shadow-md shadow-[#222] tracking-wide">Containers Shadow Generator</header>
-      <main className="flex flex-col text-white pt-16 pb-16 gap-16">
+      <main className="flex flex-col text-white pb-16">
         <div 
           style={{backgroundColor:`${params.bgColor}`}}
-          className="">
+          className="pt-16 pb-16">
           <div
             style={
               {
@@ -192,7 +185,7 @@ function App() {
             className={`h-[250px] w-[250px] m-auto rounded-lg shadow-2xl`}> 
             </div>
         </div>
-        <div className="flex flex-col w-2/3 m-auto pt-4 gap-2 text-lg">
+        <div className="flex flex-col w-2/3 m-auto pt-4 gap-2 text-lg pb-16">
           <label htmlFor={inputHorizontalLength}>Horizontal shadow length: {params.horizontal}px </label>
           <input id={inputHorizontalLength} onChange={(e)=>{handleHorizontalOnChange(e)}} min="-200" max="200" type="range" className="mb-4"/>
           <label htmlFor={inputVerticalLength}>Vertical shadow length: {params.vertical}px</label>
@@ -201,8 +194,6 @@ function App() {
           <input id={inputBlurRadius} onChange={(e)=>{handleBlurOnChange(e)}} min="0" max="300" type="range" className="mb-4"/>
           <label htmlFor={inputSpreadRadius}>Spread radius: {params.spread}px</label>
           <input id={inputSpreadRadius} onChange={(e)=>{handleSpreadOnChange(e)}} min="-200" max="200" type="range" className="mb-4"/>
-          <label htmlFor={inputShadowOpacity}>Shadow opactiy: 0</label>
-          <input id={inputShadowOpacity} onChange={(e)=>{handleOpacityOnChange(e)}} min="0" max="1" step="0.01" type="range" className="mb-4"/>
           <div className="grid grid-cols-2 text-base place-items-center gap-y-4">
             <div className="flex flex-col items-center gap-1">
               <label htmlFor={inputShadowColor}>Shadow color</label>
@@ -222,14 +213,23 @@ function App() {
             </div>
           </div>
         </div>
-        <div className="bg-[#222] w-2/3 m-auto text-sm p-4 rounded-md"> 
-                <p>-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);</p>
-                <p>-moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);</p>
-                <p>box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);</p>
+        <div className="pb-8">
+          <h2 className="w-fit m-auto font-bold">CSS</h2>
+          <div className="bg-[#222] w-2/3 m-auto text-sm p-3 rounded-md text-center"> 
+            <p>-webkit-box-shadow: {params.horizontal}px {params.vertical}px {params.blur}px {params.spread}px {params.shadowColor};</p>
+            <p>-moz-box-shadow: {params.horizontal}px {params.vertical}px {params.blur}px {params.spread}px {params.shadowColor};</p>
+            <p>box-shadow: {params.horizontal}px {params.vertical}px {params.blur}px {params.spread}px {params.shadowColor};</p>
+          </div>
+        </div>
+        <div>
+          <h2 className="w-fit m-auto font-bold">TailwindCSS</h2>
+          <div className="bg-[#222] w-2/3 m-auto text-sm p-3 rounded-md text-center"> 
+            <p>{`shadow-[${params.horizontal}px_${params.vertical}px_${params.blur}px_${params.spread}px_${params.shadowColor}]`}</p>
+          </div>
         </div>
       </main>
       <footer className="text-white flex justify-between items-center footerBorder">
-        <p>2024 - Casi todos los derechos reservados</p>
+        <p className="text-sm">2024 - Casi todos los derechos reservados</p>
         <div className="flex h-full gap-4">
           <span>{githubSVG}</span>
           <span>{linkedInSVG}</span>
@@ -238,6 +238,7 @@ function App() {
       </footer>
       <div className="absolute w-[0px] h-[0px] -bottom-32 shadow-cyan-400 shadow-[0px_0px_100px_20px_#f7fafc] -z-50"></div>
       <div className="absolute w-[0px] h-[0px] -bottom-20 right-0 shadow-fuchsia-400 shadow-[0px_0px_100px_25px_#f7fafc] -z-50"></div>
+      <div className="m-auto w-[0px] h-[0px] -bottom-96 shadow-white shadow-[0px_0px_100px_25px_#f7fafc] -z-50"></div>
     </>
   )
 }
