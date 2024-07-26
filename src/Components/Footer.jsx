@@ -90,9 +90,15 @@ function Footer() {
     <footer className="text-white flex justify-between items-center footerBorder">
         <p className="text-sm">2024 - Casi todos los derechos reservados</p>
         <div className="flex h-full gap-4">
-          <span>{githubSVG}</span>
-          <span>{linkedInSVG}</span>
-          <span>{gmailSVG}</span>
+          <a href="https://github.com/Facuiglesias" target="_blank">
+            <span>{githubSVG}</span>
+          </a>
+          <a href="https://www.linkedin.com/in/facundoiglesias21/" target="_blank">
+            <span>{linkedInSVG}</span>
+          </a>
+          <a href="mailto:Facu.iglesias2001@gmail.com" target="_blank">
+            <span>{gmailSVG}</span>
+          </a>
         </div>
     </footer>)
 }
