@@ -1,4 +1,5 @@
 function Footer() {
+  /* SVGs */
     const gmailSVG = 
     <svg 
     fill="#ffffff" 

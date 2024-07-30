@@ -1,11 +1,14 @@
-import { useState } from "react"
-import { useId } from "react"
+/*IMPORTS */ 
+import { useState, useId } from "react"
 import ShadowBalls from "./Components/shadowBalls.jsx";
 import Footer from "./Components/Footer.jsx";
 import InputRange from "./Components/InputRange.jsx";
 import InputColor from "./Components/InputColor.jsx";
 
 function App() {
+  /* STATES */
+  // params: shadow´s filters.
+  // setParams: change shadow´s filters.
   const [params, setParams] = useState({
     horizontal: 0,
     vertical: 25,
@@ -18,6 +21,7 @@ function App() {
     shadowInset: false
   })
 
+  /* IDs */
   const inputHorizontalLength = useId()
   const inputVerticalLength = useId()
   const inputBlurRadius = useId()
@@ -27,30 +31,36 @@ function App() {
   const inputBackgroundColor = useId()
   const inputShadowInset = useId()
 
+  /* FUNCTIONS */
+  // change shadow´s horizontal value (px)
   const handleHorizontalOnChange = (e) => {
     const newParams = structuredClone(params)
     newParams.horizontal = e.target.value
     setParams(newParams)
   }
 
+  // change shadow´s vertical value (px)
   const handleVerticalOnChange = (e) => {
     const newParams = structuredClone(params)
     newParams.vertical = e.target.value
     setParams(newParams)
   }
 
+  // change shadow´s blur (px)
   const handleBlurOnChange = (e) => {
     const newParams = structuredClone(params)
     newParams.blur = e.target.value
     setParams(newParams)
   }
 
+  // change shadow´s spread (px)
   const handleSpreadOnChange = (e) => {
     const newParams = structuredClone(params)
     newParams.spread = e.target.value
     setParams(newParams)
   }
   
+  // change shadow´s color
   const handleShadowColorOnChange = (e) => {
     const newParams = structuredClone(params)
     console.log(e.target.value)
@@ -58,6 +68,7 @@ function App() {
     setParams(newParams)
   }
 
+  // change square´s color
   const handleSquareColorOnChange = (e) => {
     const newParams = structuredClone(params)
     newParams.squareColor = e.target.value
@@ -65,12 +76,14 @@ function App() {
     setParams(newParams)
   }
 
+  // change square´s background color
   const handleBgColorOnChange = (e) => {
     const newParams = structuredClone(params)
     newParams.bgColor = e.target.value
     setParams(newParams)
   }
 
+  // toggle "inset" value
   const handleCheckboxOnChange = (e) => {
     const newParams = structuredClone(params)
     newParams.shadowInset = e.target.checked
@@ -129,7 +142,7 @@ function App() {
           <div className="grid grid-cols-2 text-base place-items-center gap-y-4">
             <InputColor id={inputShadowColor} handleOnChange={handleShadowColorOnChange}>Shadow color</InputColor>
             <InputColor id={inputSquareColor} handleOnChange={handleSquareColorOnChange}>Square color</InputColor>
-            <InputColor id={inputBackgroundColor} handleOnChange={handleBgColorOnChange}>Square color</InputColor>
+            <InputColor id={inputBackgroundColor} handleOnChange={handleBgColorOnChange}>Bg color</InputColor>
             <div className="flex flex-col items-center gap-1">
               <label htmlFor={inputShadowInset}>Shadow inset</label>
               <input id={inputShadowInset} onChange={(e)=>{handleCheckboxOnChange(e)}} className="w-[25px] h-[25px] appearance-none border rounded-md" style={{backgroundColor:`${params.shadowInset ? "red" : ""}`}} type="checkbox"/>
@@ -139,15 +152,15 @@ function App() {
         <div className="pb-8">
           <h2 className="w-fit m-auto font-bold">CSS</h2>
           <div className="bg-[#222] w-[89%] m-auto text-sm p-3 rounded-md"> 
-            <p>-webkit-box-shadow: {params.horizontal}px {params.vertical}px {params.blur}px {params.spread}px {params.shadowColor};</p>
-            <p>-moz-box-shadow: {params.horizontal}px {params.vertical}px {params.blur}px {params.spread}px {params.shadowColor};</p>
-            <p>box-shadow: {params.horizontal}px {params.vertical}px {params.blur}px {params.spread}px {params.shadowColor};</p>
+            <p>-webkit-box-shadow: {params.horizontal}px {params.vertical}px {params.blur}px {params.spread}px {params.shadowColor} {params.shadowInset ? "inset" : ""};</p>
+            <p>-moz-box-shadow: {params.horizontal}px {params.vertical}px {params.blur}px {params.spread}px {params.shadowColor} {params.shadowInset ? "inset" : ""};</p>
+            <p>box-shadow: {params.horizontal}px {params.vertical}px {params.blur}px {params.spread}px {params.shadowColor} {params.shadowInset ? "inset" : ""};</p>
           </div>
         </div>
         <div>
           <h2 className="w-fit m-auto font-bold">TailwindCSS</h2>
           <div className="bg-[#222] w-[89%] m-auto text-sm p-3 rounded-md"> 
-            <p>{`shadow-[${params.horizontal}px_${params.vertical}px_${params.blur}px_${params.spread}px_${params.shadowColor}]`}</p>
+            <p>{`shadow-[${params.shadowInset ? "inset_" : ""}${params.horizontal}px_${params.vertical}px_${params.blur}px_${params.spread}px_${params.shadowColor}]`}</p>
           </div>
         </div>
       </main>
