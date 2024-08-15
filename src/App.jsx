@@ -4,6 +4,7 @@ import ShadowBalls from "./Components/shadowBalls.jsx";
 import Footer from "./Components/Footer.jsx";
 import InputRange from "./Components/InputRange.jsx";
 import InputColor from "./Components/InputColor.jsx";
+const elementHTML = document.querySelector("html");
 
 function App() {
   /* STATES */
@@ -20,6 +21,16 @@ function App() {
     bgColor: "",
     shadowInset: false
   })
+  
+
+  /* SVGs */
+  const moonSVG = <svg 
+  className="w-6 h-6 fill-black stroke-black dark:fill-white dark:stroke-white"
+  viewBox="0 0 35 35" >
+    <g id="SVGRepo_iconCarrier">
+      <path d="M18.44,34.68a18.22,18.22,0,0,1-2.94-.24,18.18,18.18,0,0,1-15-20.86A18.06,18.06,0,0,1,9.59.63,2.42,2.42,0,0,1,12.2.79a2.39,2.39,0,0,1,1,2.41L11.9,3.1l1.23.22A15.66,15.66,0,0,0,23.34,21h0a15.82,15.82,0,0,0,8.47.53A2.44,2.44,0,0,1,34.47,25,18.18,18.18,0,0,1,18.44,34.68ZM10.67,2.89a15.67,15.67,0,0,0-5,22.77A15.66,15.66,0,0,0,32.18,24a18.49,18.49,0,0,1-9.65-.64A18.18,18.18,0,0,1,10.67,2.89Z"></path>
+    </g>
+  </svg>
 
   /* IDs */
   const inputHorizontalLength = useId()
@@ -90,15 +101,26 @@ function App() {
     setParams(newParams)
   }
 
+  const toggleTheme = () => {
+    if (elementHTML.classList.contains("dark")) {
+      elementHTML.classList.remove("dark");
+    } else {
+      elementHTML.classList.add("dark");
+    }
+  }
+
   return (
     <>
     <ShadowBalls className={"absolute w-[0px] h-[0px] shadow-cyan-400 shadow-[0px_0px_100px_50px_#f7fafc] -z-50"}/>
-    <ShadowBalls className={"absolute w-[0px] h-[0px] right-72 shadow-fuchsia-400 shadow-[0px_0px_100px_25px_#f7fafc] -z-50"}/>
-      <header className="text-white font-sans text-2xl font-bold text-center p-4 shadow-md shadow-[#222] tracking-wide">Containers Shadow Generator</header>
-      <main className="flex flex-col text-white pb-16">
+    <ShadowBalls className={"absolute w-[0px] h-[0px] top- right-72 shadow-fuchsia-400 shadow-[0px_0px_60px_25px_#f7fafc] -z-50"}/>
+      <header className="header-sm">
+        <h1>Containers Shadow Generator</h1>
+        <button onClick={()=>{toggleTheme()}}>{moonSVG}</button>
+      </header>
+      <main className="main-sm dark:main-sm--dark">
         <div 
           style={{backgroundColor:`${params.bgColor}`}}
-          className="pt-16 pb-16">
+          className="squareContainer-sm">
           <div
             style={
               {
@@ -111,10 +133,10 @@ function App() {
                 ${params.shadowColor} 
                 ${params.shadowInset ? "inset" : ""}
                 ` }}
-            className={`h-[250px] w-[250px] m-auto rounded-lg shadow-2xl`}> 
+            className="square-sm"> 
             </div>
         </div>
-        <div className="flex flex-col w-2/3 m-auto pt-4 gap-2 text-lg pb-16">
+        <div className="filtersRangeContainer-sm">
           <InputRange 
             id={inputHorizontalLength}
             handleOnChange={handleHorizontalOnChange}
@@ -139,27 +161,27 @@ function App() {
             min={-200}
             max={200}> Spread radius: {params.spread}px
           </InputRange>
-          <div className="grid grid-cols-2 text-base place-items-center gap-y-4">
+          <div className="filtersColorContainer-sm">
             <InputColor id={inputShadowColor} handleOnChange={handleShadowColorOnChange}>Shadow color</InputColor>
             <InputColor id={inputSquareColor} handleOnChange={handleSquareColorOnChange}>Square color</InputColor>
             <InputColor id={inputBackgroundColor} handleOnChange={handleBgColorOnChange}>Bg color</InputColor>
-            <div className="flex flex-col items-center gap-1">
+            <div className="filterInsetContainer-sm">
               <label htmlFor={inputShadowInset}>Shadow inset</label>
-              <input id={inputShadowInset} onChange={(e)=>{handleCheckboxOnChange(e)}} className="w-[25px] h-[25px] appearance-none border rounded-md" style={{backgroundColor:`${params.shadowInset ? "red" : ""}`}} type="checkbox"/>
+              <input id={inputShadowInset} onChange={(e)=>{handleCheckboxOnChange(e)}} className="filterInset-sm" style={{backgroundColor:`${params.shadowInset ? "red" : ""}`}} type="checkbox"/>
             </div>
           </div>
         </div>
         <div className="pb-8">
-          <h2 className="w-fit m-auto font-bold">CSS</h2>
-          <div className="bg-[#222] w-[89%] m-auto text-sm p-3 rounded-md"> 
+          <h2 className="titles-sm">CSS</h2>
+          <div className="resultCodeContainer-sm"> 
             <p>-webkit-box-shadow: {params.horizontal}px {params.vertical}px {params.blur}px {params.spread}px {params.shadowColor} {params.shadowInset ? "inset" : ""};</p>
             <p>-moz-box-shadow: {params.horizontal}px {params.vertical}px {params.blur}px {params.spread}px {params.shadowColor} {params.shadowInset ? "inset" : ""};</p>
             <p>box-shadow: {params.horizontal}px {params.vertical}px {params.blur}px {params.spread}px {params.shadowColor} {params.shadowInset ? "inset" : ""};</p>
           </div>
         </div>
         <div>
-          <h2 className="w-fit m-auto font-bold">TailwindCSS</h2>
-          <div className="bg-[#222] w-[89%] m-auto text-sm p-3 rounded-md"> 
+          <h2 className="titles-sm">TailwindCSS</h2>
+          <div className="resultCodeContainer-sm"> 
             <p>{`shadow-[${params.shadowInset ? "inset_" : ""}${params.horizontal}px_${params.vertical}px_${params.blur}px_${params.spread}px_${params.shadowColor}]`}</p>
           </div>
         </div>

@@ -1,6 +1,6 @@
 function InputColor({id, handleOnChange, children}) {
     return(
-        <div className="flex flex-col items-center gap-1">
+        <div className="filterColor-sm">
             <label htmlFor={id}>{children}</label>
             <input id={id} onChange={(e)=>{handleOnChange(e)}} type="color"/>
         </div>
