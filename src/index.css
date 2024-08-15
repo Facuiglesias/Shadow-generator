@@ -3,9 +3,15 @@
 @tailwind utilities;
 
 /* BODY */
+/* Transiciones para el fondo y el color del texto en el body */
 body {
   font-family: system-ui;
-  @apply dark:bg-black;
+  transition: background-color 0.3s ease;
+}
+
+/* Estilo en modo oscuro */
+.dark body {
+  background-color: #000; /* o el color que prefieras */
 }
 
 /* HEADER */
