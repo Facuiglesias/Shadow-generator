@@ -117,7 +117,7 @@ function App() {
         <h1>Containers Shadow Generator</h1>
         <button onClick={()=>{toggleTheme()}}>{moonSVG}</button>
       </header>
-      <main className="main-sm dark:main-sm--dark">
+      <main className="main-sm">
         <div 
           style={{backgroundColor:`${params.bgColor}`}}
           className="squareContainer-sm">
@@ -171,18 +171,20 @@ function App() {
             </div>
           </div>
         </div>
-        <div className="pb-8">
-          <h2 className="titles-sm">CSS</h2>
-          <div className="resultCodeContainer-sm"> 
-            <p>-webkit-box-shadow: {params.horizontal}px {params.vertical}px {params.blur}px {params.spread}px {params.shadowColor} {params.shadowInset ? "inset" : ""};</p>
-            <p>-moz-box-shadow: {params.horizontal}px {params.vertical}px {params.blur}px {params.spread}px {params.shadowColor} {params.shadowInset ? "inset" : ""};</p>
-            <p>box-shadow: {params.horizontal}px {params.vertical}px {params.blur}px {params.spread}px {params.shadowColor} {params.shadowInset ? "inset" : ""};</p>
+        <div className="lg:col-span-2">
+          <div className="pb-8">
+            <h2 className="titles-sm">CSS</h2>
+            <div className="resultCodeContainer-sm"> 
+              <p>-webkit-box-shadow: {params.horizontal}px {params.vertical}px {params.blur}px {params.spread}px {params.shadowColor} {params.shadowInset ? "inset" : ""};</p>
+              <p>-moz-box-shadow: {params.horizontal}px {params.vertical}px {params.blur}px {params.spread}px {params.shadowColor} {params.shadowInset ? "inset" : ""};</p>
+              <p>box-shadow: {params.horizontal}px {params.vertical}px {params.blur}px {params.spread}px {params.shadowColor} {params.shadowInset ? "inset" : ""};</p>
+            </div>
           </div>
-        </div>
-        <div>
-          <h2 className="titles-sm">TailwindCSS</h2>
-          <div className="resultCodeContainer-sm"> 
-            <p>{`shadow-[${params.shadowInset ? "inset_" : ""}${params.horizontal}px_${params.vertical}px_${params.blur}px_${params.spread}px_${params.shadowColor}]`}</p>
+          <div>
+            <h2 className="titles-sm">TailwindCSS</h2>
+            <div className="resultCodeContainer-sm"> 
+              <p>{`shadow-[${params.shadowInset ? "inset_" : ""}${params.horizontal}px_${params.vertical}px_${params.blur}px_${params.spread}px_${params.shadowColor}]`}</p>
+            </div>
           </div>
         </div>
       </main>

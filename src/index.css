@@ -3,13 +3,13 @@
 @tailwind utilities;
 
 /* BODY */
-/* Transiciones para el fondo y el color del texto en el body */
+/* transition & font */
 body {
   font-family: system-ui;
   transition: background-color 0.3s ease;
 }
 
-/* Estilo en modo oscuro */
+/* dark mode */
 .dark body {
   background-color: #000; /* o el color que prefieras */
 }
@@ -17,14 +17,16 @@ body {
 /* HEADER */
 .header-sm {
   /* shared styles */
-  @apply flex justify-between text-2xl font-bold text-center p-4 shadow-sm tracking-wide;
+  @apply flex justify-center gap-4 text-2xl font-bold text-center p-4 shadow-sm tracking-wide;
   /* dark mode */
-  @apply dark:shadow-md dark:text-white dark:shadow-[#222];
+  @apply dark:shadow-sm dark:text-white dark:shadow-[#222];
 }
 
 /* MAIN */
 .main-sm {
   @apply flex flex-col pb-16;
+  /* breakpoint-lg */
+  @apply lg:grid lg:grid-rows-2 lg:grid-cols-3 lg:pb-0;
   /* dark mode */
   @apply dark:text-white;
 }
@@ -32,6 +34,8 @@ body {
 /* SQUARE */
 .squareContainer-sm {
   @apply py-16;
+  /* breakpoint-lg */
+  @apply lg:col-span-2 lg:mx-16;
 }
 
 .square-sm {
@@ -41,6 +45,8 @@ body {
 /* FILTERS */
 .filtersRangeContainer-sm {
   @apply flex flex-col w-2/3 m-auto pt-4 gap-2 text-lg pb-16;
+  /* lg breakpoint */;
+  @apply lg:row-span-2 lg:w-full lg:pr-20;
 }
 
 .filtersColorContainer-sm {
@@ -71,18 +77,22 @@ body {
 .resultCodeContainer-sm {
   @apply bg-[#e8e8e8] w-[89%] m-auto text-sm p-3 rounded-md;
   /* dark mode */
-  @apply dark:bg-[#222]
+  @apply dark:bg-[#222];
+  /* lg breakpoint */
+  @apply max-w-[500px];
 }
 
 /* FOOTER */ 
 .footer-sm {
   @apply flex justify-between items-center;
+  /* lg breakpoint */
+  @apply justify-around;
   /* dark mode */
   @apply dark:text-white;
 }
 
 .footerSVGs-sm {
-  @apply flex h-full gap-2;
+  @apply flex h-full gap-2 lg:gap-6;
 }
 
 .footerBorder {
