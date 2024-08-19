@@ -2,9 +2,9 @@
 import { useState, useId } from "react"
 import ShadowBalls from "./Components/shadowBalls.jsx";
 import Footer from "./Components/Footer.jsx";
+import Header from "./Components/Header.jsx";
 import InputRange from "./Components/InputRange.jsx";
 import InputColor from "./Components/InputColor.jsx";
-const elementHTML = document.querySelector("html");
 
 function App() {
   /* STATES */
@@ -21,16 +21,6 @@ function App() {
     bgColor: "",
     shadowInset: false
   })
-  
-
-  /* SVGs */
-  const moonSVG = <svg 
-  className="w-6 h-6 fill-black stroke-black dark:fill-white dark:stroke-white"
-  viewBox="0 0 35 35" >
-    <g id="SVGRepo_iconCarrier">
-      <path d="M18.44,34.68a18.22,18.22,0,0,1-2.94-.24,18.18,18.18,0,0,1-15-20.86A18.06,18.06,0,0,1,9.59.63,2.42,2.42,0,0,1,12.2.79a2.39,2.39,0,0,1,1,2.41L11.9,3.1l1.23.22A15.66,15.66,0,0,0,23.34,21h0a15.82,15.82,0,0,0,8.47.53A2.44,2.44,0,0,1,34.47,25,18.18,18.18,0,0,1,18.44,34.68ZM10.67,2.89a15.67,15.67,0,0,0-5,22.77A15.66,15.66,0,0,0,32.18,24a18.49,18.49,0,0,1-9.65-.64A18.18,18.18,0,0,1,10.67,2.89Z"></path>
-    </g>
-  </svg>
 
   /* IDs */
   const inputHorizontalLength = useId()
@@ -101,22 +91,11 @@ function App() {
     setParams(newParams)
   }
 
-  const toggleTheme = () => {
-    if (elementHTML.classList.contains("dark")) {
-      elementHTML.classList.remove("dark");
-    } else {
-      elementHTML.classList.add("dark");
-    }
-  }
-
   return (
     <>
     <ShadowBalls className={"absolute w-[0px] h-[0px] shadow-cyan-400 shadow-[0px_0px_100px_50px_#f7fafc] -z-50"}/>
     <ShadowBalls className={"absolute w-[0px] h-[0px] top- right-72 shadow-fuchsia-400 shadow-[0px_0px_60px_25px_#f7fafc] -z-50"}/>
-      <header className="header-sm">
-        <h1>Containers Shadow Generator</h1>
-        <button onClick={()=>{toggleTheme()}}>{moonSVG}</button>
-      </header>
+    <Header>Containers Shadow Generator</Header>
       <main className="main-sm">
         <div 
           style={{backgroundColor:`${params.bgColor}`}}
