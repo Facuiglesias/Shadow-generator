@@ -5,6 +5,7 @@ import Footer from "./Components/Footer.jsx";
 import Header from "./Components/Header.jsx";
 import InputRange from "./Components/InputRange.jsx";
 import InputColor from "./Components/InputColor.jsx";
+import ResultCode from "./Components/ResultCode.jsx";
 
 function App() {
   /* STATES */
@@ -93,9 +94,9 @@ function App() {
 
   return (
     <>
-    <ShadowBalls className={"absolute w-[0px] h-[0px] shadow-cyan-400 shadow-[0px_0px_100px_50px_#f7fafc] -z-50"}/>
-    <ShadowBalls className={"absolute w-[0px] h-[0px] top- right-72 shadow-fuchsia-400 shadow-[0px_0px_60px_25px_#f7fafc] -z-50"}/>
-    <Header>Containers Shadow Generator</Header>
+      <ShadowBalls className={"absolute w-[0px] h-[0px] shadow-cyan-400 shadow-[0px_0px_100px_50px_#f7fafc] -z-50"}/>
+      <ShadowBalls className={"absolute w-[0px] h-[0px] top- right-72 shadow-fuchsia-400 shadow-[0px_0px_60px_25px_#f7fafc] -z-50"}/>
+      <Header>Containers Shadow Generator</Header>
       <main className="main-sm">
         <div 
           style={{backgroundColor:`${params.bgColor}`}}
@@ -151,26 +152,14 @@ function App() {
           </div>
         </div>
         <div className="lg:col-span-2">
-          <div className="pb-8">
-            <h2 className="titles-sm">CSS</h2>
-            <div className="resultCodeContainer-sm"> 
-              <p>-webkit-box-shadow: {params.horizontal}px {params.vertical}px {params.blur}px {params.spread}px {params.shadowColor} {params.shadowInset ? "inset" : ""};</p>
-              <p>-moz-box-shadow: {params.horizontal}px {params.vertical}px {params.blur}px {params.spread}px {params.shadowColor} {params.shadowInset ? "inset" : ""};</p>
-              <p>box-shadow: {params.horizontal}px {params.vertical}px {params.blur}px {params.spread}px {params.shadowColor} {params.shadowInset ? "inset" : ""};</p>
-            </div>
-          </div>
-          <div>
-            <h2 className="titles-sm">TailwindCSS</h2>
-            <div className="resultCodeContainer-sm"> 
-              <p>{`shadow-[${params.shadowInset ? "inset_" : ""}${params.horizontal}px_${params.vertical}px_${params.blur}px_${params.spread}px_${params.shadowColor}]`}</p>
-            </div>
-          </div>
+          <ResultCode params={params} tailwindBoolean={false}/>
+          <ResultCode params={params} tailwindBoolean={true}/>
         </div>
       </main>
       <Footer />
-    <ShadowBalls className={"absolute w-[0px] h-[0px] -bottom-32 shadow-cyan-400 shadow-[0px_0px_100px_20px_#f7fafc] -z-50"}/>
-    <ShadowBalls className={"absolute w-[0px] h-[0px] -bottom-20 right-0 shadow-fuchsia-400 shadow-[0px_0px_100px_25px_#f7fafc] -z-50"}/>
-    <ShadowBalls className={"m-auto w-[0px] h-[0px] -bottom-96 shadow-white shadow-[0px_0px_100px_25px_#f7fafc] -z-50"}/>
+      <ShadowBalls className={"absolute w-[0px] h-[0px] -bottom-32 shadow-cyan-400 shadow-[0px_0px_100px_20px_#f7fafc] -z-50"}/>
+      <ShadowBalls className={"absolute w-[0px] h-[0px] -bottom-20 right-0 shadow-fuchsia-400 shadow-[0px_0px_100px_25px_#f7fafc] -z-50"}/>
+      <ShadowBalls className={"m-auto w-[0px] h-[0px] -bottom-96 shadow-white shadow-[0px_0px_100px_25px_#f7fafc] -z-50"}/>
     </>
   )
 }
