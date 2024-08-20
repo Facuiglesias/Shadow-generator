@@ -1,6 +1,6 @@
 /*IMPORTS */ 
 import { useState, useId } from "react"
-import ShadowBalls from "./Components/shadowBalls.jsx";
+import ShadowBalls from "./Components/ShadowBalls.jsx";
 import Footer from "./Components/Footer.jsx";
 import Header from "./Components/Header.jsx";
 import InputRange from "./Components/InputRange.jsx";
