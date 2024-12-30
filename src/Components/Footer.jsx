@@ -1,3 +1,5 @@
+import ShadowBalls from "./ShadowBalls.jsx";
+
 function Footer() {
   /* SVGs */
     const gmailSVG = <svg 
@@ -54,6 +56,7 @@ function Footer() {
     </svg>
 
     return(
+        <>
     <footer className="footer-sm footerBorder">
         <p className="text-sm">2024 - Casi todos los derechos reservados</p>
         <div className="footerSVGs-sm">
@@ -67,7 +70,10 @@ function Footer() {
             <span>{gmailSVG}</span>
           </a>
         </div>
-    </footer>)
+    </footer>
+      <ShadowBalls className={"absolute m-auto w-[0px] h-[0px] bottom-0 right-[50%] shadow-white shadow-[0px_0px_100px_25px_#f7fafc] -z-0"}/>
+  </>  
+  )
 }
 
 export default Footer

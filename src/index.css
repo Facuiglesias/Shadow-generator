@@ -5,6 +5,7 @@
 /* BODY */
 /* transition & font */
 body {
+  min-height: 100vh;
   font-family: system-ui;
   transition: background-color 0.3s ease;
 }
@@ -12,6 +13,11 @@ body {
 /* dark mode */
 .dark body {
   background-color: #000; /* o el color que prefieras */
+}
+
+/* root */
+#root {
+  @apply flex flex-col min-h-screen justify-between;
 }
 
 /* HEADER */
