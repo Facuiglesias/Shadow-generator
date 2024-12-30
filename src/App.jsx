@@ -1,5 +1,4 @@
 import ShadowBalls from "./Components/ShadowBalls.jsx";
-import Header from "./Components/Header.jsx";
 import Footer from "./Components/Footer.jsx";
 import ContainerShadowGenerator from "./pages/ContainerShadowGenerator.jsx";
 import Home from "./pages/Home.jsx";
