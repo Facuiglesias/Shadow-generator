@@ -6,7 +6,7 @@
 /* transition & font */
 body {
   min-height: 100vh;
-  font-family: system-ui;
+  font-family: "Rubik", serif;  
   transition: background-color 0.3s ease;
 }
 

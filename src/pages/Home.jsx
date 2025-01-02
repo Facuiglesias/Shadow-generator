@@ -6,14 +6,52 @@ function Home() {
   return (
     <>
       <Header>CSS Generator Tools</Header>
-
-      <main className="flex flex-col p-4 gap-4 text-white text-lg font-bold">
-        <Link
-          className="bg-[#222] p-4 rounded-lg hover:bg-[#131313] text-center"
-          to="container-shadow-generator"
-        >
-          Box Shadow
-        </Link>
+      <main className="px-16 flex flex-col gap-8 text-white py-8">
+        <h1 className="font-semibold">Bienvenido a CSS Generator Tools</h1>
+        <p>
+          Explora nuestras herramientas de diseño personalizadas para llevar tus
+          proyectos al siguiente nivel. Genera sombras para contenedores,
+          textos, y más con solo unos clics. Simplifica tu flujo de trabajo y
+          obtén resultados impresionantes en menos tiempo.
+        </p>
+        <div className="flex flex-col gap-3 pb-16">
+          <Link
+            className="border border-[#131313] p-4 rounded-lg text-center"
+            to="container-shadow-generator"
+          >
+            Box Shadow
+          </Link>
+          <Link
+            className="border border-[#131313] p-4 rounded-lg text-center"
+            to="container-shadow-generator"
+          >
+            Text Shadow
+          </Link>
+          <Link
+            className="bg-[#222] p-4 rounded-lg hover:bg-[#131313] text-center"
+            to="container-shadow-generator"
+          >
+            Box Shadow
+          </Link>
+          <Link
+            className="bg-[#222] p-4 rounded-lg hover:bg-[#131313] text-center"
+            to="container-shadow-generator"
+          >
+            Box Shadow
+          </Link>
+          <Link
+            className="bg-[#222] p-4 rounded-lg hover:bg-[#131313] text-center"
+            to="container-shadow-generator"
+          >
+            Box Shadow
+          </Link>
+          <Link
+            className="bg-[#222] p-4 rounded-lg hover:bg-[#131313] text-center"
+            to="container-shadow-generator"
+          >
+            Box Shadow
+          </Link>
+        </div>
         {/* <button className="bg-[#222] p-4 rounded-lg hover:bg-[#131313]">
           Text Shadow
         </button> */}
