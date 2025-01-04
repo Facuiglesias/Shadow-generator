@@ -5,8 +5,8 @@ import Header from "../Components/Header";
 function Home() {
   return (
     <>
-      <Header>CSS Generator Tools</Header>
-      <main className="px-16 flex flex-col gap-8 text-white py-8">
+      <Header>CSS Tools</Header>
+      <main className="px-8 flex flex-col gap-6 text-white py-8">
         <h1 className="font-semibold">Bienvenido a CSS Generator Tools</h1>
         <p>
           Explora nuestras herramientas de diseño personalizadas para llevar tus
@@ -23,7 +23,7 @@ function Home() {
           </Link>
           <Link
             className="border border-[#131313] p-4 rounded-lg text-center"
-            to="container-shadow-generator"
+            to="text-shadow"
           >
             Text Shadow
           </Link>

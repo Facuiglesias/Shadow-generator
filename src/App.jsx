@@ -1,6 +1,7 @@
 import ShadowBalls from "./Components/ShadowBalls.jsx";
 import Footer from "./Components/Footer.jsx";
 import ContainerShadowGenerator from "./pages/ContainerShadowGenerator.jsx";
+import TextShadow from "./pages/TextShadow.jsx";
 import Home from "./pages/Home.jsx";
 import { Route, Routes, BrowserRouter } from "react-router";
 
@@ -26,6 +27,7 @@ function App() {
             path="container-shadow-generator"
             element={<ContainerShadowGenerator />}
           />
+          <Route path="text-shadow" element={<TextShadow />} />
         </Routes>
 
         <Footer />

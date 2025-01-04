@@ -5,31 +5,28 @@ import InputColor from "../Components/InputColor.jsx";
 import ResultCode from "../Components/ResultCode.jsx";
 import Header from "../Components/Header.jsx";
 
-function ContainerShadowGenerator() {
+function TextShadow() {
   /* STATES */
   // params: shadow´s filters.
   // setParams: change shadow´s filters.
   const [params, setParams] = useState({
     horizontal: 0,
-    vertical: 25,
-    blur: 50,
-    spread: -12,
-    shadowColor: "#d946ef",
-    shadowOpacity: 1,
-    squareColor: "rgb(34 211 238)",
+    vertical: 0,
+    blur: 10,
+    opacity: 1,
+    shadowColor: "#FF00F7",
+    textColor: "rgb(34 211 238)",
     bgColor: "",
-    shadowInset: false,
   });
 
   /* IDs */
   const inputHorizontalLength = useId();
   const inputVerticalLength = useId();
   const inputBlurRadius = useId();
-  const inputSpreadRadius = useId();
+  const inputShadowOpacity = useId();
   const inputShadowColor = useId();
-  const inputSquareColor = useId();
+  const inputTextColor = useId();
   const inputBackgroundColor = useId();
-  const inputShadowInset = useId();
 
   /* FUNCTIONS */
   // change shadow´s horizontal value (px)
@@ -53,65 +50,71 @@ function ContainerShadowGenerator() {
     setParams(newParams);
   };
 
-  // change shadow´s spread (px)
-  const handleSpreadOnChange = (e) => {
+  // change shadow´s opacity (px)
+  const handleOpacityOnChange = (e) => {
     const newParams = structuredClone(params);
-    newParams.spread = e.target.value;
+    newParams.opacity = e.target.value;
+    const hexColor = params.shadowColor;
+
+    if (hexColor.startsWith("#")) {
+      const hexColor = newParams.shadowColor;
+      const r = parseInt(hexColor.slice(1, 3), 16);
+      const g = parseInt(hexColor.slice(3, 5), 16);
+      const b = parseInt(hexColor.slice(5, 7), 16);
+      const a = newParams.opacity;
+      newParams.shadowColor = `rgba(${r}, ${g}, ${b}, ${a})`;
+    } else {
+      const values = hexColor
+        .slice(5, -1)
+        .split(",")
+        .map((v) => v.trim()); // Extraer y separar los valores
+      const [r, g, b] = values; // Tomar los valores de r, g, b
+      const a = newParams.opacity; // Usar la nueva opacidad
+      newParams.shadowColor = `rgba(${r}, ${g}, ${b}, ${a})`;
+    }
+
     setParams(newParams);
   };
 
   // change shadow´s color
   const handleShadowColorOnChange = (e) => {
     const newParams = structuredClone(params);
-    console.log(e.target.value);
     newParams.shadowColor = e.target.value;
     setParams(newParams);
   };
 
-  // change square´s color
-  const handleSquareColorOnChange = (e) => {
+  // change text´s color
+  const handleTextColorOnChange = (e) => {
     const newParams = structuredClone(params);
-    newParams.squareColor = e.target.value;
-    console.log(newParams);
+    newParams.textColor = e.target.value;
     setParams(newParams);
+    console.log(newParams.textColor);
   };
 
-  // change square´s background color
+  // change background color
   const handleBgColorOnChange = (e) => {
     const newParams = structuredClone(params);
     newParams.bgColor = e.target.value;
     setParams(newParams);
   };
 
-  // toggle "inset" value
-  const handleCheckboxOnChange = (e) => {
-    const newParams = structuredClone(params);
-    newParams.shadowInset = e.target.checked;
-    setParams(newParams);
-  };
-
   return (
     <>
-      <Header>Box Shadow</Header>
+      <Header>Text Shadow</Header>
       <main className="main-sm">
-        <div
-          style={{ backgroundColor: `${params.bgColor}` }}
-          className="squareContainer-sm"
-        >
-          <div
+        <div className="px-8 pt-6">
+          <textarea
+            defaultValue="Preview text..."
             style={{
-              backgroundColor: params.squareColor,
-              boxShadow: `
-                        ${params.horizontal}px 
-                    ${params.vertical}px 
-                    ${params.blur}px 
-                    ${params.spread}px 
-                    ${params.shadowColor} 
-                    ${params.shadowInset ? "inset" : ""}
-                    `,
+              backgroundColor: `${params.bgColor}`,
+              color: `${params.textColor}`,
+              textShadow: `${params.horizontal}px
+              ${params.vertical}px
+              ${params.blur}px
+              ${params.shadowColor}`,
             }}
-            className="square-sm"
-          ></div>
+            className="focus:border-slate-800 w-full border border-[#131313] outline-0 p-2 text-2xl rounded-lg h-full bg-transparent"
+          ></textarea>
         </div>
         <div className="filtersRangeContainer-sm">
           <InputRange
@@ -133,22 +136,23 @@ function ContainerShadowGenerator() {
             Vertical shadow length: {params.vertical}px
           </InputRange>
           <InputRange
+            id={inputShadowOpacity}
+            handleOnChange={handleOpacityOnChange}
+            min={0}
+            max={1}
+            step={0.01}
+          >
+            {" "}
+            Shadow color opacity: {params.opacity}px
+          </InputRange>
+          <InputRange
             id={inputBlurRadius}
             handleOnChange={handleBlurOnChange}
-            min={0}
-            max={300}
+            min={1}
+            max={50}
           >
             {" "}
             Blur radius: {params.blur}px
-          </InputRange>
-          <InputRange
-            id={inputSpreadRadius}
-            handleOnChange={handleSpreadOnChange}
-            min={-200}
-            max={200}
-          >
-            {" "}
-            Spread radius: {params.spread}px
           </InputRange>
           <div className="filtersColorContainer-sm">
             <InputColor
@@ -158,10 +162,10 @@ function ContainerShadowGenerator() {
               Shadow color
             </InputColor>
             <InputColor
-              id={inputSquareColor}
-              handleOnChange={handleSquareColorOnChange}
+              id={inputTextColor}
+              handleOnChange={handleTextColorOnChange}
             >
-              Square color
+              Text color
             </InputColor>
             <InputColor
               id={inputBackgroundColor}
@@ -169,20 +173,6 @@ function ContainerShadowGenerator() {
             >
               Bg color
             </InputColor>
-            <div className="filterInsetContainer-sm">
-              <label htmlFor={inputShadowInset}>Shadow inset</label>
-              <input
-                id={inputShadowInset}
-                onChange={(e) => {
-                  handleCheckboxOnChange(e);
-                }}
-                className="filterInset-sm"
-                style={{
-                  backgroundColor: `${params.shadowInset ? "red" : ""}`,
-                }}
-                type="checkbox"
-              />
-            </div>
           </div>
         </div>
         <div className="lg:col-span-2">
@@ -194,4 +184,4 @@ function ContainerShadowGenerator() {
   );
 }
 
-export default ContainerShadowGenerator;
+export default TextShadow;
