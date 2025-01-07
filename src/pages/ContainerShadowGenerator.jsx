@@ -93,10 +93,10 @@ function ContainerShadowGenerator() {
   return (
     <>
       <Header>Box Shadow</Header>
-      <main className="main-sm">
+      <main className="main">
         <div
           style={{ backgroundColor: `${params.bgColor}` }}
-          className="squareContainer-sm"
+          className="squareContainer"
         >
           <div
             style={{
@@ -110,10 +110,10 @@ function ContainerShadowGenerator() {
                     ${params.shadowInset ? "inset" : ""}
                     `,
             }}
-            className="square-sm"
+            className="square"
           ></div>
         </div>
-        <div className="filtersRangeContainer-sm">
+        <div className="filtersRangeContainer">
           <InputRange
             id={inputHorizontalLength}
             handleOnChange={handleHorizontalOnChange}
@@ -150,7 +150,7 @@ function ContainerShadowGenerator() {
             {" "}
             Spread radius: {params.spread}px
           </InputRange>
-          <div className="filtersColorContainer-sm">
+          <div className="filtersColorContainer">
             <InputColor
               id={inputShadowColor}
               handleOnChange={handleShadowColorOnChange}
@@ -169,14 +169,14 @@ function ContainerShadowGenerator() {
             >
               Bg color
             </InputColor>
-            <div className="filterInsetContainer-sm">
+            <div className="filterInsetContainer">
               <label htmlFor={inputShadowInset}>Shadow inset</label>
               <input
                 id={inputShadowInset}
                 onChange={(e) => {
                   handleCheckboxOnChange(e);
                 }}
-                className="filterInset-sm"
+                className="filterInset"
                 style={{
                   backgroundColor: `${params.shadowInset ? "red" : ""}`,
                 }}

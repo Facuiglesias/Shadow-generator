@@ -6,7 +6,7 @@
 /* transition & font */
 body {
   min-height: 100vh;
-  font-family: "Rubik", serif;  
+  font-family: "Rubik", serif;
   transition: background-color 0.3s ease;
 }
 
@@ -21,7 +21,7 @@ body {
 }
 
 /* HEADER */
-.header-sm {
+.header {
   /* shared styles */
   @apply flex justify-center gap-4 text-2xl font-bold text-center p-4 shadow-sm tracking-wide;
   /* dark mode */
@@ -29,7 +29,7 @@ body {
 }
 
 /* MAIN */
-.main-sm {
+.main {
   @apply flex flex-col pb-16;
   /* breakpoint-lg */
   @apply lg:grid lg:grid-rows-2 lg:grid-cols-3 lg:pb-0;
@@ -38,49 +38,48 @@ body {
 }
 
 /* SQUARE */
-.squareContainer-sm {
+.squareContainer {
   @apply py-16;
   /* breakpoint-lg */
   @apply lg:col-span-2 lg:mx-16;
 }
 
-.square-sm {
+.square {
   @apply h-[250px] w-[250px] m-auto rounded-lg shadow-2xl;
 }
 
 /* FILTERS */
-.filtersRangeContainer-sm {
+.filtersRangeContainer {
   @apply flex flex-col w-2/3 m-auto pt-4 gap-2 text-lg pb-16;
-  /* lg breakpoint */;
+  /* lg breakpoint */
   @apply lg:row-span-2 lg:w-full lg:pr-20;
 }
 
-.filtersColorContainer-sm {
+.filtersColorContainer {
   @apply grid grid-cols-2 text-base place-items-center gap-y-4;
 }
 
-.filterColor-sm {
+.filterColor {
   @apply flex flex-col items-center gap-1;
 }
 
-.filterInsetContainer-sm {
+.filterInsetContainer {
   @apply flex flex-col items-center gap-1;
 }
 
-.filterInset-sm {
+.filterInset {
   @apply w-[25px] h-[25px] appearance-none border-2 border-black rounded-md;
   /* dark mode */
   @apply dark:border-white;
 }
 
-
 /* TITLES (CSS/TAILWINDCSS) */
-.titles-sm{
+.titles {
   @apply w-fit m-auto font-bold;
 }
 
 /*RESULT CODE CONTAINER */
-.resultCodeContainer-sm {
+.resultCodeContainer {
   @apply bg-[#e8e8e8] w-[89%] m-auto text-sm p-3 rounded-md;
   /* dark mode */
   @apply dark:bg-[#222];
@@ -88,8 +87,8 @@ body {
   @apply max-w-[500px];
 }
 
-/* FOOTER */ 
-.footer-sm {
+/* FOOTER */
+.footer {
   @apply flex justify-between items-center;
   /* lg breakpoint */
   @apply justify-around;
@@ -97,23 +96,23 @@ body {
   @apply dark:text-white;
 }
 
-.footerSVGs-sm {
+.footerSVGs {
   @apply flex h-full gap-2 lg:gap-6;
 }
 
 .footerBorder {
-    background: 
-        linear-gradient(#fff, #fff) 50% 50%/calc(100% - 2px) calc(100% - 2px) no-repeat,
-        linear-gradient(89deg, transparent 0%, #000 50%, transparent 100%);
-    border-radius: 0px;
-    padding: 20px;
-    box-sizing: content-box;
+  background: linear-gradient(#fff, #fff) 50% 50% / calc(100% - 2px)
+      calc(100% - 2px) no-repeat,
+    linear-gradient(89deg, transparent 0%, #000 50%, transparent 100%);
+  border-radius: 0px;
+  padding: 20px;
+  box-sizing: content-box;
 }
 
 .dark .footerBorder {
-  background: 
-      linear-gradient(#000, #000) 50% 50%/calc(100% - 2px) calc(100% - 2px) no-repeat,
-      linear-gradient(89deg, transparent 0%, #fff 50%, transparent 100%);
+  background: linear-gradient(#000, #000) 50% 50% / calc(100% - 2px)
+      calc(100% - 2px) no-repeat,
+    linear-gradient(89deg, transparent 0%, #fff 50%, transparent 100%);
   border-radius: 0px;
   padding: 20px;
   box-sizing: content-box;
@@ -121,26 +120,26 @@ body {
 
 /* INPUT STYLES */
 input[type="range"] {
-    -webkit-appearance: none;
-    appearance: none;
-    background: transparent;
-    cursor: pointer;
-  }
-  
-  input[type="range"]:focus {
-    outline: none;
-  }
-  
-  input[type="range"]::-webkit-slider-runnable-track {
-    background-color: black;
-    height: 1px;
-  }
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
 
-  .dark input[type="range"]::-webkit-slider-runnable-track {
-    background-color: white;
-    height: 1px;
-  }
-  
+input[type="range"]:focus {
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  background-color: black;
+  height: 1px;
+}
+
+.dark input[type="range"]::-webkit-slider-runnable-track {
+  background-color: white;
+  height: 1px;
+}
+
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none; /* Override default look */
   appearance: none;

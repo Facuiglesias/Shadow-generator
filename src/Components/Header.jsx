@@ -1,33 +1,41 @@
+function Header({ children }) {
+  /* Utils */
+  const elementHTML = document.querySelector("html");
 
-function Header({children}) {
-    /* Utils */
-    const elementHTML = document.querySelector("html");
-    
-    /* SVGs */
-    const moonSVG = <svg 
-    className="w-6 h-6 fill-black stroke-black dark:fill-white dark:stroke-white"
-    viewBox="0 0 35 35" >
+  /* SVGs */
+  const moonSVG = (
+    <svg
+      className="w-6 h-6 fill-black stroke-black dark:fill-white dark:stroke-white"
+      viewBox="0 0 35 35"
+    >
       <g id="SVGRepo_iconCarrier">
         <path d="M18.44,34.68a18.22,18.22,0,0,1-2.94-.24,18.18,18.18,0,0,1-15-20.86A18.06,18.06,0,0,1,9.59.63,2.42,2.42,0,0,1,12.2.79a2.39,2.39,0,0,1,1,2.41L11.9,3.1l1.23.22A15.66,15.66,0,0,0,23.34,21h0a15.82,15.82,0,0,0,8.47.53A2.44,2.44,0,0,1,34.47,25,18.18,18.18,0,0,1,18.44,34.68ZM10.67,2.89a15.67,15.67,0,0,0-5,22.77A15.66,15.66,0,0,0,32.18,24a18.49,18.49,0,0,1-9.65-.64A18.18,18.18,0,0,1,10.67,2.89Z"></path>
       </g>
     </svg>
+  );
 
-    /* Functions */
+  /* Functions */
 
-    const toggleTheme = () => {
-        if (elementHTML.classList.contains("dark")) {
-          elementHTML.classList.remove("dark");
-        } else {
-          elementHTML.classList.add("dark");
-        }
-      }
-  
-      return(
-        <header className="header-sm">
-        <h1>{children}</h1>
-        <button onClick={()=>{toggleTheme()}}>{moonSVG}</button>
-      </header>
-      )
-  }
-  
-  export default Header
+  const toggleTheme = () => {
+    if (elementHTML.classList.contains("dark")) {
+      elementHTML.classList.remove("dark");
+    } else {
+      elementHTML.classList.add("dark");
+    }
+  };
+
+  return (
+    <header className="header">
+      <h1>{children}</h1>
+      <button
+        onClick={() => {
+          toggleTheme();
+        }}
+      >
+        {moonSVG}
+      </button>
+    </header>
+  );
+}
+
+export default Header;

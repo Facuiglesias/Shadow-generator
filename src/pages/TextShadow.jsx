@@ -2,7 +2,6 @@
 import { useState, useId } from "react";
 import InputRange from "../Components/InputRange.jsx";
 import InputColor from "../Components/InputColor.jsx";
-import ResultCode from "../Components/ResultCode.jsx";
 import Header from "../Components/Header.jsx";
 
 function TextShadow() {
@@ -14,7 +13,7 @@ function TextShadow() {
     vertical: 0,
     blur: 10,
     opacity: 1,
-    shadowColor: "#FF00F7",
+    shadowColor: "rgba(251, 0, 255, 1)",
     textColor: "rgb(34 211 238)",
     bgColor: "",
   });
@@ -101,9 +100,10 @@ function TextShadow() {
   return (
     <>
       <Header>Text Shadow</Header>
-      <main className="main-sm">
-        <div className="px-8 pt-6">
+      <main className="main">
+        <div className="squareContainer">
           <textarea
+            className="block m-auto focus:border-slate-800 border border-[#131313] outline-0 p-2 text-2xl rounded-lg bg-transparent"
             defaultValue="Preview text..."
             style={{
               backgroundColor: `${params.bgColor}`,
@@ -113,10 +113,9 @@ function TextShadow() {
               ${params.blur}px
               ${params.shadowColor}`,
             }}
-            className="focus:border-slate-800 w-full border border-[#131313] outline-0 p-2 text-2xl rounded-lg h-full bg-transparent"
           ></textarea>
         </div>
-        <div className="filtersRangeContainer-sm">
+        <div className="filtersRangeContainer">
           <InputRange
             id={inputHorizontalLength}
             handleOnChange={handleHorizontalOnChange}
@@ -154,7 +153,7 @@ function TextShadow() {
             {" "}
             Blur radius: {params.blur}px
           </InputRange>
-          <div className="filtersColorContainer-sm">
+          <div className="filtersColorContainer">
             <InputColor
               id={inputShadowColor}
               handleOnChange={handleShadowColorOnChange}
@@ -176,8 +175,15 @@ function TextShadow() {
           </div>
         </div>
         <div className="lg:col-span-2">
-          <ResultCode params={params} tailwindBoolean={false} />
-          <ResultCode params={params} tailwindBoolean={true} />
+          <div>
+            <h2 className="titles">CSS</h2>
+            <div className="resultCodeContainer">
+              <p>
+                text-shadow: {params.horizontal}px {params.vertical}px{" "}
+                {params.blur}px {params.shadowColor};
+              </p>
+            </div>
+          </div>
         </div>
       </main>
     </>

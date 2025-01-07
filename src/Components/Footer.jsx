@@ -54,9 +54,9 @@ function Footer() {
 
   return (
     <>
-      <footer className="footer-sm footerBorder">
+      <footer className="footer footerBorder">
         <p className="text-sm">2024 - Casi todos los derechos reservados</p>
-        <div className="footerSVGs-sm">
+        <div className="footerSVGs">
           <a href="https://github.com/Facuiglesias" target="_blank">
             <span>{githubSVG}</span>
           </a>
